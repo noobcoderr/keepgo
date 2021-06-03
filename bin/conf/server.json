@@ -5,8 +5,16 @@
         "Id":"regist",
         "ProcessID":"development",
         "Settings":{
-          "ApiDocPath":   "apidoc",
-          "Port": 6010
+          "ApiDocPath":   "apidoc"
+        }
+      }
+    ],
+    "Web": [
+      {
+        "Id":"Web",
+        "ProcessID":"development",
+        "Settings":{
+          "ApiDocPath":   "apidoc"
         }
       }
     ]
