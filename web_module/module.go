@@ -42,7 +42,7 @@ func (self *Web) OnInit(app module.App, settings *conf.ModuleSettings) {
 
 func (self *Web) startHttpServer() *http.Server {
 	srv := &http.Server{Addr: ":8080"}
-	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+	http.HandleFunc("/hello", func(w http.ResponseWriter, r *http.Request) {
 		_ = r.ParseForm()
 		rstr, err := mqrpc.String(
 			self.Call(
@@ -50,6 +50,19 @@ func (self *Web) startHttpServer() *http.Server {
 				"regist",
 				"/say/hi",
 				mqrpc.Param(r.Form.Get("name")),
+			),
+		)
+		log.Info("RpcCall %v , err %v", rstr, err)
+		_, _ = io.WriteString(w, rstr)
+	})
+	http.HandleFunc("/user", func(w http.ResponseWriter, r *http.Request) {
+		_ = r.ParseForm()
+		rstr, err := mqrpc.String(
+			self.Call(
+				context.Background(),
+				"regist",
+				"/user/create",
+				mqrpc.Param(r.Form.Get("username")),
 			),
 		)
 		log.Info("RpcCall %v , err %v", rstr, err)

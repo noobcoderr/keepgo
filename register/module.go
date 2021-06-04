@@ -14,6 +14,7 @@ import (
 	"github.com/liangdas/mqant/log"
 	"github.com/liangdas/mqant/module"
 	basemodule "github.com/liangdas/mqant/module/base"
+	"time"
 )
 
 var Module = func() module.Module {
@@ -37,6 +38,7 @@ func (m *Regist) OnInit(app module.App, settings *conf.ModuleSettings) {
 	m.BaseModule.OnInit(m, app, settings)
 	log.Info("%v模块初始化完成...", m.GetType())
 	m.GetServer().RegisterGO("/say/hi", m.say)
+	m.GetServer().RegisterGO("/user/create", m.createNewUser)
 
 }
 
@@ -58,4 +60,8 @@ func (m *Regist) OnDestroy() {
 
 func (m *Regist) say(name string) (r string, err error) {
 	return fmt.Sprintf("hi %v", name), nil
+}
+
+func (m *Regist) createNewUser(name string) (r string, err error) {
+	return fmt.Sprintf("u-%v", time.Now().Unix()), nil
 }
