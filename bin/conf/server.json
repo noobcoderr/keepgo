@@ -1,0 +1,33 @@
+{
+  "Module":{
+    "regist": [
+      {
+        "Id":"regist",
+        "ProcessID":"development",
+        "Settings":{
+          "ApiDocPath":   "apidoc"
+        }
+      }
+    ],
+    "Web": [
+      {
+        "Id":"Web",
+        "ProcessID":"development",
+        "Settings":{
+          "ApiDocPath":   "apidoc"
+        }
+      }
+    ]
+  },
+  "Mqtt":{
+    "WirteLoopChanNum": 10,
+    "ReadPackLoop": 1,
+    "ReadTimeout": 600,
+    "WriteTimeout": 300
+  },
+  "Rpc":{
+    "MaxCoroutine":10000,
+    "RpcExpired": 1,
+    "LogSuccess":false
+  }
+}
