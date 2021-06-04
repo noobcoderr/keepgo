@@ -9,6 +9,15 @@
         }
       }
     ],
+    "Pay": [
+      {
+        "Id":"Pay",
+        "ProcessID":"development",
+        "Settings":{
+          "ApiDocPath":   "apidoc"
+        }
+      }
+    ],
     "Web": [
       {
         "Id":"Web",

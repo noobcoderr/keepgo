@@ -15,6 +15,7 @@ import (
 	"github.com/liangdas/mqant/registry"
 	"github.com/liangdas/mqant/registry/consul"
 	"github.com/nats-io/nats.go"
+	"keepgo/pay"
 	"keepgo/register"
 	"keepgo/web_module"
 )
@@ -39,6 +40,7 @@ func main() {
 	)
 	err = keepGO.Run(
 		register.Module(),
+		pay.Module(),
 		web_module.Module(),
 	)
 	if err != nil {

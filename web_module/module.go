@@ -68,6 +68,19 @@ func (self *Web) startHttpServer() *http.Server {
 		log.Info("RpcCall %v , err %v", rstr, err)
 		_, _ = io.WriteString(w, rstr)
 	})
+	http.HandleFunc("/order", func(w http.ResponseWriter, r *http.Request) {
+		_ = r.ParseForm()
+		rstr, err := mqrpc.String(
+			self.Call(
+				context.Background(),
+				"Pay",
+				"/order/create",
+				mqrpc.Param(r.Form.Get("app")),
+			),
+		)
+		log.Info("RpcCall %v , err %v", rstr, err)
+		_, _ = io.WriteString(w, rstr)
+	})
 	go func() {
 		if err := srv.ListenAndServe(); err != nil {
 			// cannot panic, because this probably is an intentional close
